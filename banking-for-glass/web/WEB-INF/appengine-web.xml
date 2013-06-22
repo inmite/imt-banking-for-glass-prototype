@@ -15,7 +15,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 <appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
-  <application>your_app_engine_application_id</application>
+  <application>banking-for-glass</application>
   <version>1</version>
 
   <threadsafe>true</threadsafe>
