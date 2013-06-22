@@ -1,9 +1,10 @@
-package eu.inmite.glass.rest;
+package eu.inmite.glass.banking.rest;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import org.codehaus.jackson.map.ObjectMapper;
@@ -15,7 +16,9 @@ import com.google.common.collect.ImmutableMap;
 
 import eu.inmite.glass.banking.model.fio.AccountStatement;
 import eu.inmite.glass.banking.utils.TemplateReplace;
+import eu.inmite.glass.banking.view.model.AccountBalanceVO;
 import eu.inmite.glass.banking.view.model.AccountInformationVO;
+import eu.inmite.glass.banking.view.model.TransactionInfoVO;
 
 public class FioRESTClient {
 	
@@ -48,8 +51,17 @@ public class FioRESTClient {
 			String fixedURL = TemplateReplace.templateReplace(url, map);
 			HTTPResponse response = httpClient.fetch(new URL(fixedURL));
 			AccountStatement statement = new ObjectMapper().readValue(response.getContent(), AccountStatement.class);
-			System.out.println(statement.toString());
-			return null;
+			AccountInformationVO responseObject = new AccountInformationVO();
+			// Fill balance info from Statement
+			AccountBalanceVO accountBalance = responseObject.getAccountBalance();
+			accountBalance.setAccountNumber(statement.getInfo().getAccountId());
+			accountBalance.setBankCode(statement.getInfo().getBankId());
+			accountBalance.setAmount(statement.getInfo().getClosingBalance());
+			accountBalance.setCurrencyCode(statement.getInfo().getCurrency());
+			
+			// Fill transactions from Statement
+			List<TransactionInfoVO> transactions = responseObject.getTransactions();
+			return responseObject;
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
