@@ -6,6 +6,7 @@ import com.google.common.collect.ImmutableMap;
 import com.google.glassware.AuthUtil;
 import com.google.glassware.MirrorClient;
 import eu.inmite.glass.banking.rest.FioRESTClient;
+import eu.inmite.glass.banking.utils.FormattingUtils;
 import eu.inmite.glass.banking.utils.TemplateReplace;
 import eu.inmite.glass.banking.view.model.AccountBalanceVO;
 import eu.inmite.glass.banking.view.model.AccountInformationVO;
@@ -14,6 +15,7 @@ import eu.inmite.glass.banking.view.model.TransactionInfoVO;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -93,11 +95,14 @@ public class BankingService {
 	private TimelineItem createTransactionItem(String bundleId, TransactionInfoVO transaction) {
 		TimelineItem tranItem = new TimelineItem();
 		final String color = transaction.getAmount().compareTo(BigDecimal.ZERO) > 0 ? "#00FF00" : "#FF0000";
+		Date date = FormattingUtils.parseFioDate(transaction.getDate());
+		String formattedDate = FormattingUtils.formatDate(date);
 		String html = TemplateReplace.templateReplace(getTEMPLATE_TRANSACTION(), ImmutableMap.<String, String>of(
 				"AMOUNT", String.valueOf(transaction.getAmount().longValue()),
 				"CURRENCY", transaction.getCurrencyCode(),
 				"MESSAGE", transaction.getMessage(),
-				"COLOR", color
+				"COLOR", color,
+				"DATE", formattedDate
 		));
 		tranItem.setHtml(html);
 		tranItem.setBundleId(bundleId);
