@@ -21,6 +21,9 @@ import com.google.api.services.mirror.model.Contact;
 import com.google.api.services.mirror.model.NotificationConfig;
 import com.google.api.services.mirror.model.Subscription;
 import com.google.api.services.mirror.model.TimelineItem;
+import com.google.appengine.api.taskqueue.Queue;
+import com.google.appengine.api.taskqueue.QueueFactory;
+import com.google.appengine.api.taskqueue.TaskOptions;
 import com.google.common.collect.Lists;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,6 +36,7 @@ import java.util.logging.Logger;
  * @author Jenny Murphy - http://google.com/+JennyMurphy
  */
 public class NewUserBootstrapper {
+
 	private static final Logger LOG = Logger.getLogger(NewUserBootstrapper.class.getSimpleName());
 
 	/**
@@ -68,10 +72,22 @@ public class NewUserBootstrapper {
 
 		// Send welcome timeline item
 		TimelineItem timelineItem = new TimelineItem();
-		timelineItem.setText("Welcome to the Glass Java Quick Start");
+		timelineItem.setText("Welcome to the Glass Banking");
 		timelineItem.setNotification(new NotificationConfig().setLevel("DEFAULT"));
 		TimelineItem insertedItem = MirrorClient.insertTimelineItem(credential, timelineItem);
 		LOG.info("Bootstrapper inserted welcome message " + insertedItem.getId() + " for user "
 				+ userId);
+
+		scheduleTask(userId);
+	}
+
+	private static void scheduleTask(String userId) {
+//		Queue queue = QueueFactory.getQueue("refresh-accounts");
+		Queue queue = QueueFactory.getDefaultQueue();
+		queue.add(TaskOptions.Builder
+				.withUrl("/refresh-accounts")
+				.param("userId", userId)
+				.method(TaskOptions.Method.GET));
+
 	}
 }

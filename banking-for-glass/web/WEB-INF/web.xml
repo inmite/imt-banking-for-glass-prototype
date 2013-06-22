@@ -76,6 +76,16 @@ limitations under the License.
     <url-pattern>/signout</url-pattern>
   </servlet-mapping>
 
+	<!-- task servlet -->
+
+	<servlet>
+		<servlet-name>refresh-accounts</servlet-name>
+		<servlet-class>eu.inmite.glass.banking.servlet.RefreshAccountsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>refresh-accounts</servlet-name>
+		<url-pattern>/refresh-accounts</url-pattern>
+	</servlet-mapping>
 
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
