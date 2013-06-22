@@ -6,11 +6,14 @@ import java.net.URL;
 import java.util.Date;
 import java.util.Map;
 
+import org.codehaus.jackson.map.ObjectMapper;
+
 import com.google.appengine.api.urlfetch.HTTPResponse;
 import com.google.appengine.api.urlfetch.URLFetchService;
 import com.google.appengine.api.urlfetch.URLFetchServiceFactory;
 import com.google.common.collect.ImmutableMap;
 
+import eu.inmite.glass.banking.model.fio.AccountStatement;
 import eu.inmite.glass.banking.utils.TemplateReplace;
 import eu.inmite.glass.banking.view.model.AccountInformationVO;
 
@@ -26,7 +29,7 @@ public class FioRESTClient {
 		httpClient = URLFetchServiceFactory.getURLFetchService();
 	}
 	
-	public FioRESTClient getInstance() {
+	public static FioRESTClient getInstance() {
 		if (inst == null) {
 			inst = new FioRESTClient();
 		}
@@ -39,10 +42,14 @@ public class FioRESTClient {
 	
 	public AccountInformationVO fetchAccountInformation(String token, Date fromDate, Date toDate) {
 		AccountInformationVO accountInformation = new AccountInformationVO();
-		Map<String, String> map = ImmutableMap.<String, String>of("TOKEN", "jJ9itOlTXKiLXHEBRpMeXZCNe4RHSMwnf6YOY2hKRPrdYj3icikoftcWEvbbMAYM", "DATE_FROM", "2013-01-25", "DATE_TO", "2013-06-22");
+		Map<String, String> map = ImmutableMap.<String, String>of("TOKEN", token, "DATE_FROM", "2013-01-25", "DATE_TO", "2013-06-22");
 		
 		try {
-			HTTPResponse response = httpClient.fetch(new URL(TemplateReplace.templateReplace(url, map)));
+			String fixedURL = TemplateReplace.templateReplace(url, map);
+			HTTPResponse response = httpClient.fetch(new URL(fixedURL));
+			AccountStatement statement = new ObjectMapper().readValue(response.getContent(), AccountStatement.class);
+			System.out.println(statement.toString());
+			return null;
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
