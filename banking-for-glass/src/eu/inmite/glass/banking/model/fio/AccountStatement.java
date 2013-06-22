@@ -4,7 +4,6 @@ package eu.inmite.glass.banking.model.fio;
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import javax.xml.datatype.XMLGregorianCalendar;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -376,8 +375,8 @@ public class AccountStatement {
         protected BigDecimal openingBalance;
         protected BigDecimal closingBalance;
 
-        protected XMLGregorianCalendar dateStart;
-        protected XMLGregorianCalendar dateEnd;
+        protected String dateStart;
+        protected String dateEnd;
         protected BigInteger yearList;
 
         protected BigInteger idList;
@@ -558,10 +557,10 @@ public class AccountStatement {
          * 
          * @return
          *     possible object is
-         *     {@link XMLGregorianCalendar }
+         *     {@link String }
          *     
          */
-        public XMLGregorianCalendar getDateStart() {
+        public String getDateStart() {
             return dateStart;
         }
 
@@ -570,10 +569,10 @@ public class AccountStatement {
          * 
          * @param value
          *     allowed object is
-         *     {@link XMLGregorianCalendar }
+         *     {@link String }
          *     
          */
-        public void setDateStart(XMLGregorianCalendar value) {
+        public void setDateStart(String value) {
             this.dateStart = value;
         }
 
@@ -582,10 +581,10 @@ public class AccountStatement {
          * 
          * @return
          *     possible object is
-         *     {@link XMLGregorianCalendar }
+         *     {@link String }
          *     
          */
-        public XMLGregorianCalendar getDateEnd() {
+        public String getDateEnd() {
             return dateEnd;
         }
 
@@ -594,10 +593,10 @@ public class AccountStatement {
          * 
          * @param value
          *     allowed object is
-         *     {@link XMLGregorianCalendar }
+         *     {@link String }
          *     
          */
-        public void setDateEnd(XMLGregorianCalendar value) {
+        public void setDateEnd(String value) {
             this.dateEnd = value;
         }
 
@@ -1712,7 +1711,7 @@ public class AccountStatement {
 
                 @XmlValue
         
-                protected XMLGregorianCalendar value;
+                protected String value;
                 @XmlAttribute(required = true)
                 @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
                 @XmlSchemaType(name = "token")
@@ -1726,10 +1725,10 @@ public class AccountStatement {
                  * 
                  * @return
                  *     possible object is
-                 *     {@link XMLGregorianCalendar }
+                 *     {@link String }
                  *     
                  */
-                public XMLGregorianCalendar getValue() {
+                public String getValue() {
                     return value;
                 }
 
@@ -1738,10 +1737,10 @@ public class AccountStatement {
                  * 
                  * @param value
                  *     allowed object is
-                 *     {@link XMLGregorianCalendar }
+                 *     {@link String }
                  *     
                  */
-                public void setValue(XMLGregorianCalendar value) {
+                public void setValue(String value) {
                     this.value = value;
                 }
 
