@@ -1,4 +1,4 @@
-package eu.inmite.glass.model;
+package eu.inmite.glass.banking.model;
 
 import java.math.BigDecimal;
 
