@@ -12,6 +12,7 @@ import eu.inmite.glass.banking.view.model.AccountInformationVO;
 import eu.inmite.glass.banking.view.model.TransactionInfoVO;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -23,14 +24,9 @@ public class BankingService {
 
 	private static final Logger LOG = Logger.getLogger(BankingService.class.getSimpleName());
 
-	private static final String TEMPLATE_BALANCE = "<article>\n" +
-			"  <div style=\"padding: 25px 40px 23px 30px; background-color: #333; text-align: right; border: 1px solid #555; color: #2A94FE\">\n" +
-			"    <img src=\"http://data.inmite.eu/tmp/logo.png\" height=\"48\" width=\"88\"style=\"float: left;\"/>\n" +
-			"   \t<p style=\"float: right; width: 480px;\">${BANK_ACCOUNT}</p>\n" +
-			"\t<div style=\"clear: both; height: 0;\"></div>\n" +
-			"  </div>\n" +
-			"  <div style=\"padding: 60px 40px 60px 20px; text-align: right; font-size: 88px\">${BALANCE} ${CURRENCY}</div>\n" +
-			"</article>";
+	private static String TEMPLATE_TRANSACTION = null;
+
+	private static String TEMPLATE_BALANCE = null;
 
 	private static BankingService instance;
 
@@ -39,6 +35,7 @@ public class BankingService {
 			instance = new BankingService();
 			try {
 				BankingService.setTEMPLATE_BALANCE(TemplateReplace.getHTMLTemplateText("balance"));
+				BankingService.setTEMPLATE_TRANSACTION(TemplateReplace.getHTMLTemplateText("transaction"));
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -57,13 +54,6 @@ public class BankingService {
 
 		final Credential credential = AuthUtil.newAuthorizationCodeFlow().loadCredential(userId);
 
-		final String html = TemplateReplace.templateReplace(getTEMPLATE_BALANCE(), ImmutableMap.<String, String>of(
-				"BANK_ACCOUNT", balance.getFullBankAccountNumber(),
-				"BALANCE", String.valueOf(balance.getAmount()),
-				"CURRENCY", balance.getCurrencyCode()
-		));
-		final TimelineItem item = new TimelineItem();
-		item.setHtml(html);
 		final String bundleId = balance.getFullBankAccountNumber();
 		final TimelineItem coverItem = createCoverItem(balance, bundleId);
 		final List<TimelineItem> transactionItems = new ArrayList<TimelineItem>();
@@ -88,17 +78,26 @@ public class BankingService {
 	private static String getTEMPLATE_BALANCE() {
 		return TEMPLATE_BALANCE;
 	}
+	private static String getTEMPLATE_TRANSACTION() {
+		return TEMPLATE_TRANSACTION;
+	}
 
 	private static void setTEMPLATE_BALANCE(String tEMPLATE_BALANCE) {
 		TEMPLATE_BALANCE = tEMPLATE_BALANCE;
 	}
 
+	public static void setTEMPLATE_TRANSACTION(String templateTransaction) {
+		TEMPLATE_TRANSACTION = templateTransaction;
+	}
+
 	private TimelineItem createTransactionItem(String bundleId, TransactionInfoVO transaction) {
 		TimelineItem tranItem = new TimelineItem();
-		String html = TemplateReplace.templateReplace(TEMPLATE_TRANSACTION, ImmutableMap.<String, String>of(
+		final String color = transaction.getAmount().compareTo(BigDecimal.ZERO) > 0 ? "#00FF00" : "#FF0000";
+		String html = TemplateReplace.templateReplace(getTEMPLATE_TRANSACTION(), ImmutableMap.<String, String>of(
 				"AMOUNT", String.valueOf(transaction.getAmount().longValue()),
 				"CURRENCY", transaction.getCurrencyCode(),
-				"MESSAGE", transaction.getMessage()
+				"MESSAGE", transaction.getMessage(),
+				"COLOR", color
 		));
 		tranItem.setHtml(html);
 		tranItem.setBundleId(bundleId);
@@ -107,9 +106,10 @@ public class BankingService {
 	}
 
 	private TimelineItem createCoverItem(AccountBalanceVO balance, String bundleId) {
-		final String html = TemplateReplace.templateReplace(TEMPLATE_BALANCE, ImmutableMap.<String, String>of(
+
+		final String html = TemplateReplace.templateReplace(getTEMPLATE_BALANCE(), ImmutableMap.<String, String>of(
 				"BANK_ACCOUNT", balance.getFullBankAccountNumber(),
-				"BALANCE", String.valueOf(balance.getAmount().longValue()),
+				"BALANCE", String.valueOf(balance.getAmount()),
 				"CURRENCY", balance.getCurrencyCode()
 		));
 
