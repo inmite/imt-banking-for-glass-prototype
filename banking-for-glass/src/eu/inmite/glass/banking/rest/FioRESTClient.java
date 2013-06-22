@@ -15,6 +15,7 @@ import com.google.appengine.api.urlfetch.URLFetchServiceFactory;
 import com.google.common.collect.ImmutableMap;
 
 import eu.inmite.glass.banking.model.fio.AccountStatement;
+import eu.inmite.glass.banking.rest.model.AccountResponse;
 import eu.inmite.glass.banking.utils.TemplateReplace;
 import eu.inmite.glass.banking.view.model.AccountBalanceVO;
 import eu.inmite.glass.banking.view.model.AccountInformationVO;
@@ -50,18 +51,19 @@ public class FioRESTClient {
 		try {
 			String fixedURL = TemplateReplace.templateReplace(url, map);
 			HTTPResponse response = httpClient.fetch(new URL(fixedURL));
-			AccountStatement statement = new ObjectMapper().readValue(response.getContent(), AccountStatement.class);
-			AccountInformationVO responseObject = new AccountInformationVO();
+			
+			AccountResponse responseObject = new ObjectMapper().readValue(response.getContent(), AccountResponse.class);
+			AccountInformationVO returnObject = new AccountInformationVO();
 			// Fill balance info from Statement
-			AccountBalanceVO accountBalance = responseObject.getAccountBalance();
-			accountBalance.setAccountNumber(statement.getInfo().getAccountId());
-			accountBalance.setBankCode(statement.getInfo().getBankId());
-			accountBalance.setAmount(statement.getInfo().getClosingBalance());
-			accountBalance.setCurrencyCode(statement.getInfo().getCurrency());
+			AccountBalanceVO accountBalance = returnObject.getAccountBalance();
+			accountBalance.setAccountNumber(responseObject.getAccountStatement().getInfo().getAccountId());
+			accountBalance.setBankCode(responseObject.getAccountStatement().getInfo().getBankId());
+			accountBalance.setAmount(responseObject.getAccountStatement().getInfo().getClosingBalance());
+			accountBalance.setCurrencyCode(responseObject.getAccountStatement().getInfo().getCurrency());
 			
 			// Fill transactions from Statement
-			List<TransactionInfoVO> transactions = responseObject.getTransactions();
-			return responseObject;
+			List<TransactionInfoVO> transactions = returnObject.getTransactions();
+			return returnObject;
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
