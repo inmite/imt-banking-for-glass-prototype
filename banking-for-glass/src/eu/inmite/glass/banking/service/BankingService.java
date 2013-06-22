@@ -9,8 +9,11 @@ import eu.inmite.glass.banking.rest.FioRESTClient;
 import eu.inmite.glass.banking.utils.TemplateReplace;
 import eu.inmite.glass.banking.view.model.AccountBalanceVO;
 import eu.inmite.glass.banking.view.model.AccountInformationVO;
+import eu.inmite.glass.banking.view.model.TransactionInfoVO;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 /**
@@ -19,6 +22,19 @@ import java.util.logging.Logger;
 public class BankingService {
 
 	private static final Logger LOG = Logger.getLogger(BankingService.class.getSimpleName());
+
+	private static final String TEMPLATE_TRANSACTION = "<article>\n" +
+			"  <div style=\"float: left; height: 360px; width: 22px; background-color: ${COLOR};\"></div>\n" +
+			"  <section>\n" +
+			"    <div class=\"text-x-large\" style=\"\">\n" +
+			"      <p style=\"color: ${COLOR}\">${AMOUNT}<sub>${CURRENCY}</sub></p>\n" +
+			"      <p style=\"font-size: 48px\">${MESSAGE}</p>\n" +
+			"    </div>\n" +
+			"  </section>\n" +
+			"  <footer>\n" +
+			"    <div>${DATE}</div>\n" +
+			"  </footer>\n" +
+			"</article>";
 
 	private static final String TEMPLATE_BALANCE = "<article>\n" +
 			"  <div style=\"padding: 25px 40px 23px 30px; background-color: #333; text-align: right; border: 1px solid #555; color: #2A94FE\">\n" +
@@ -48,19 +64,51 @@ public class BankingService {
 
 		final Credential credential = AuthUtil.newAuthorizationCodeFlow().loadCredential(userId);
 
-		final String html = TemplateReplace.templateReplace(TEMPLATE_BALANCE, ImmutableMap.<String, String>of(
-				"BANK_ACCOUNT", balance.getFullBankAccountNumber(),
-				"BALANCE", String.valueOf(balance.getAmount()),
-				"CURRENCY", balance.getCurrencyCode()
-		));
-		final TimelineItem item = new TimelineItem();
-		item.setHtml(html);
+		final String bundleId = balance.getFullBankAccountNumber();
+		final TimelineItem coverItem = createCoverItem(balance, bundleId);
+		final List<TimelineItem> transactionItems = new ArrayList<TimelineItem>();
+		if (account.getTransactions() != null) {
+			for (TransactionInfoVO transaction : account.getTransactions()) {
+				TimelineItem tranItem = createTransactionItem(bundleId, transaction);
+				transactionItems.add(tranItem);
+			}
+		}
 
 		LOG.info("pushing account balance " + balance);
 		try {
-			MirrorClient.insertTimelineItem(credential, item);
+			MirrorClient.insertTimelineItem(credential, coverItem);
+			for (TimelineItem item : transactionItems) {
+				MirrorClient.insertTimelineItem(credential, item);
+			}
 		} catch (IOException e) {
-			LOG.severe("failed to push timeline item for user " + userId + "\n" + e.getMessage());
+			LOG.severe("failed to push timeline coverItem for user " + userId + "\n" + e.getMessage());
 		}
+	}
+
+	private TimelineItem createTransactionItem(String bundleId, TransactionInfoVO transaction) {
+		TimelineItem tranItem = new TimelineItem();
+		String html = TemplateReplace.templateReplace(TEMPLATE_TRANSACTION, ImmutableMap.<String, String>of(
+				"AMOUNT", String.valueOf(transaction.getAmount().longValue()),
+				"CURRENCY", transaction.getCurrencyCode(),
+				"MESSAGE", transaction.getMessage()
+		));
+		tranItem.setHtml(html);
+		tranItem.setBundleId(bundleId);
+		tranItem.setIsBundleCover(false);
+		return tranItem;
+	}
+
+	private TimelineItem createCoverItem(AccountBalanceVO balance, String bundleId) {
+		final String html = TemplateReplace.templateReplace(TEMPLATE_BALANCE, ImmutableMap.<String, String>of(
+				"BANK_ACCOUNT", balance.getFullBankAccountNumber(),
+				"BALANCE", String.valueOf(balance.getAmount().longValue()),
+				"CURRENCY", balance.getCurrencyCode()
+		));
+
+		final TimelineItem coverItem = new TimelineItem();
+		coverItem.setBundleId(bundleId);
+		coverItem.setIsBundleCover(true);
+		coverItem.setHtml(html);
+		return coverItem;
 	}
 }
