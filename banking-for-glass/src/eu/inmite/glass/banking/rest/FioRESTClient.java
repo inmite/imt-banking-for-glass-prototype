@@ -1,19 +1,9 @@
 package eu.inmite.glass.banking.rest;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-
-import org.codehaus.jackson.map.ObjectMapper;
-
 import com.google.appengine.api.urlfetch.HTTPResponse;
 import com.google.appengine.api.urlfetch.URLFetchService;
 import com.google.appengine.api.urlfetch.URLFetchServiceFactory;
 import com.google.common.collect.ImmutableMap;
-
 import eu.inmite.glass.banking.model.fio.AccountStatement;
 import eu.inmite.glass.banking.model.fio.AccountStatement.TransactionList.Transaction;
 import eu.inmite.glass.banking.rest.model.AccountResponse;
@@ -21,13 +11,21 @@ import eu.inmite.glass.banking.utils.TemplateReplace;
 import eu.inmite.glass.banking.view.model.AccountBalanceVO;
 import eu.inmite.glass.banking.view.model.AccountInformationVO;
 import eu.inmite.glass.banking.view.model.TransactionInfoVO;
+import org.codehaus.jackson.map.ObjectMapper;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 public class FioRESTClient {
 	
 	private static FioRESTClient inst = null;
 	private URLFetchService httpClient;
 	
-	private static String url = "https://www.fio.cz/ib_api/rest/periods/${TOKEN}/${DATE_FROM}/${DATE_TO}/transactions.json";
+	private static final String url = "https://www.fio.cz/ib_api/rest/periods/${TOKEN}/${DATE_FROM}/${DATE_TO}/transactions.json";
 	
 	private FioRESTClient() {
 		super();
