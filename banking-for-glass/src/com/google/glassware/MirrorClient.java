@@ -38,143 +38,143 @@ import java.util.logging.Logger;
 
 /**
  * A facade for easier access to basic API operations
- * 
+ *
  * @author Jenny Murphy - http://google.com/+JennyMurphy
  */
 public class MirrorClient {
-  private static final Logger LOG = Logger.getLogger(MirrorClient.class.getSimpleName());
+	private static final Logger LOG = Logger.getLogger(MirrorClient.class.getSimpleName());
 
-  public static Mirror getMirror(Credential credential) {
-    return new Mirror.Builder(new UrlFetchTransport(), new JacksonFactory(), credential)
-        .setApplicationName("PG Java Starter").build();
-  }
+	public static Mirror getMirror(Credential credential) {
+		return new Mirror.Builder(new UrlFetchTransport(), new JacksonFactory(), credential)
+				.setApplicationName("PG Java Starter").build();
+	}
 
-  public static Contact insertContact(Credential credential, Contact contact) throws IOException {
-    Mirror.Contacts contacts = getMirror(credential).contacts();
-    return contacts.insert(contact).execute();
-  }
+	public static Contact insertContact(Credential credential, Contact contact) throws IOException {
+		Mirror.Contacts contacts = getMirror(credential).contacts();
+		return contacts.insert(contact).execute();
+	}
 
-  public static void deleteContact(Credential credential, String contactId) throws IOException {
-    Mirror.Contacts contacts = getMirror(credential).contacts();
-    contacts.delete(contactId).execute();
-  }
+	public static void deleteContact(Credential credential, String contactId) throws IOException {
+		Mirror.Contacts contacts = getMirror(credential).contacts();
+		contacts.delete(contactId).execute();
+	}
 
-  public static ContactsListResponse listContacts(Credential credential) throws IOException {
-    Mirror.Contacts contacts = getMirror(credential).contacts();
-    return contacts.list().execute();
-  }
+	public static ContactsListResponse listContacts(Credential credential) throws IOException {
+		Mirror.Contacts contacts = getMirror(credential).contacts();
+		return contacts.list().execute();
+	}
 
-  public static Contact getContact(Credential credential, String id) throws IOException {
-    try {
-      Mirror.Contacts contacts = getMirror(credential).contacts();
-      return contacts.get(id).execute();
-    } catch (GoogleJsonResponseException e) {
-      LOG.warning("Could not find contact with ID " + id);
-      return null;
-    }
-  }
-
-
-  public static TimelineListResponse listItems(Credential credential, long count)
-      throws IOException {
-    Mirror.Timeline timelineItems = getMirror(credential).timeline();
-    Mirror.Timeline.List list = timelineItems.list();
-    list.setMaxResults(count);
-    return list.execute();
-  }
+	public static Contact getContact(Credential credential, String id) throws IOException {
+		try {
+			Mirror.Contacts contacts = getMirror(credential).contacts();
+			return contacts.get(id).execute();
+		} catch (GoogleJsonResponseException e) {
+			LOG.warning("Could not find contact with ID " + id);
+			return null;
+		}
+	}
 
 
-  /**
-   * Subscribes to notifications on the user's timeline.
-   */
-  public static Subscription insertSubscription(Credential credential, String callbackUrl,
-      String userId, String collection) throws IOException {
-    LOG.info("Attempting to subscribe verify_token " + userId + " with callback " + callbackUrl);
+	public static TimelineListResponse listItems(Credential credential, long count)
+			throws IOException {
+		Mirror.Timeline timelineItems = getMirror(credential).timeline();
+		Mirror.Timeline.List list = timelineItems.list();
+		list.setMaxResults(count);
+		return list.execute();
+	}
 
-    // Rewrite "appspot.com" to "Appspot.com" as a workaround for
-    // http://b/6909300.
-    callbackUrl = callbackUrl.replace("appspot.com", "Appspot.com");
 
-    Subscription subscription = new Subscription();
-    // Alternatively, subscribe to "locations"
-    subscription.setCollection(collection);
-    subscription.setCallbackUrl(callbackUrl);
-    subscription.setUserToken(userId);
+	/**
+	 * Subscribes to notifications on the user's timeline.
+	 */
+	public static Subscription insertSubscription(Credential credential, String callbackUrl,
+	                                              String userId, String collection) throws IOException {
+		LOG.info("Attempting to subscribe verify_token " + userId + " with callback " + callbackUrl);
 
-    return getMirror(credential).subscriptions().insert(subscription).execute();
-  }
+		// Rewrite "appspot.com" to "Appspot.com" as a workaround for
+		// http://b/6909300.
+		callbackUrl = callbackUrl.replace("appspot.com", "Appspot.com");
 
-  /**
-   * Subscribes to notifications on the user's timeline.
-   */
-  public static void deleteSubscription(Credential credential, String id) throws IOException {
-    getMirror(credential).subscriptions().delete(id).execute();
-  }
+		Subscription subscription = new Subscription();
+		// Alternatively, subscribe to "locations"
+		subscription.setCollection(collection);
+		subscription.setCallbackUrl(callbackUrl);
+		subscription.setUserToken(userId);
 
-  public static SubscriptionsListResponse listSubscriptions(Credential credential)
-      throws IOException {
-    Mirror.Subscriptions subscriptions = getMirror(credential).subscriptions();
-    return subscriptions.list().execute();
-  }
+		return getMirror(credential).subscriptions().insert(subscription).execute();
+	}
 
-  /**
-   * Inserts a simple timeline item.
-   * 
-   * @param credential the user's credential
-   * @param item the item to insert
-   */
-  public static TimelineItem insertTimelineItem(Credential credential, TimelineItem item)
-      throws IOException {
-    return getMirror(credential).timeline().insert(item).execute();
-  }
+	/**
+	 * Subscribes to notifications on the user's timeline.
+	 */
+	public static void deleteSubscription(Credential credential, String id) throws IOException {
+		getMirror(credential).subscriptions().delete(id).execute();
+	}
 
-  /**
-   * Inserts an item with an attachment provided as a byte array.
-   * 
-   * @param credential the user's credential
-   * @param item the item to insert
-   * @param attachmentContentType the MIME type of the attachment (or null if
-   *        none)
-   * @param attachmentData data for the attachment (or null if none)
-   */
-  public static void insertTimelineItem(Credential credential, TimelineItem item,
-      String attachmentContentType, byte[] attachmentData) throws IOException {
-    Mirror.Timeline timeline = getMirror(credential).timeline();
-    timeline.insert(item, new ByteArrayContent(attachmentContentType, attachmentData)).execute();
+	public static SubscriptionsListResponse listSubscriptions(Credential credential)
+			throws IOException {
+		Mirror.Subscriptions subscriptions = getMirror(credential).subscriptions();
+		return subscriptions.list().execute();
+	}
 
-  }
+	/**
+	 * Inserts a simple timeline item.
+	 *
+	 * @param credential the user's credential
+	 * @param item       the item to insert
+	 */
+	public static TimelineItem insertTimelineItem(Credential credential, TimelineItem item)
+			throws IOException {
+		return getMirror(credential).timeline().insert(item).execute();
+	}
 
-  /**
-   * Inserts an item with an attachment provided as an input stream.
-   * 
-   * @param credential the user's credential
-   * @param item the item to insert
-   * @param attachmentContentType the MIME type of the attachment (or null if
-   *        none)
-   * @param attachmentInputStream input stream for the attachment (or null if
-   *        none)
-   */
-  public static void insertTimelineItem(Credential credential, TimelineItem item,
-      String attachmentContentType, InputStream attachmentInputStream) throws IOException {
-    insertTimelineItem(credential, item, attachmentContentType,
-        ByteStreams.toByteArray(attachmentInputStream));
-  }
+	/**
+	 * Inserts an item with an attachment provided as a byte array.
+	 *
+	 * @param credential            the user's credential
+	 * @param item                  the item to insert
+	 * @param attachmentContentType the MIME type of the attachment (or null if
+	 *                              none)
+	 * @param attachmentData        data for the attachment (or null if none)
+	 */
+	public static void insertTimelineItem(Credential credential, TimelineItem item,
+	                                      String attachmentContentType, byte[] attachmentData) throws IOException {
+		Mirror.Timeline timeline = getMirror(credential).timeline();
+		timeline.insert(item, new ByteArrayContent(attachmentContentType, attachmentData)).execute();
 
-  public static InputStream getAttachmentInputStream(Credential credential, String timelineItemId,
-      String attachmentId) throws IOException {
-    Mirror mirrorService = getMirror(credential);
-    Mirror.Timeline.Attachments attachments = mirrorService.timeline().attachments();
-    Attachment attachmentMetadata = attachments.get(timelineItemId, attachmentId).execute();
-    HttpResponse resp =
-        mirrorService.getRequestFactory()
-            .buildGetRequest(new GenericUrl(attachmentMetadata.getContentUrl())).execute();
-    return resp.getContent();
-  }
+	}
 
-  public static String getAttachmentContentType(Credential credential, String timelineItemId,
-      String attachmentId) throws IOException {
-    Mirror.Timeline.Attachments attachments = getMirror(credential).timeline().attachments();
-    Attachment attachmentMetadata = attachments.get(timelineItemId, attachmentId).execute();
-    return attachmentMetadata.getContentType();
-  }
+	/**
+	 * Inserts an item with an attachment provided as an input stream.
+	 *
+	 * @param credential            the user's credential
+	 * @param item                  the item to insert
+	 * @param attachmentContentType the MIME type of the attachment (or null if
+	 *                              none)
+	 * @param attachmentInputStream input stream for the attachment (or null if
+	 *                              none)
+	 */
+	public static void insertTimelineItem(Credential credential, TimelineItem item,
+	                                      String attachmentContentType, InputStream attachmentInputStream) throws IOException {
+		insertTimelineItem(credential, item, attachmentContentType,
+				ByteStreams.toByteArray(attachmentInputStream));
+	}
+
+	public static InputStream getAttachmentInputStream(Credential credential, String timelineItemId,
+	                                                   String attachmentId) throws IOException {
+		Mirror mirrorService = getMirror(credential);
+		Mirror.Timeline.Attachments attachments = mirrorService.timeline().attachments();
+		Attachment attachmentMetadata = attachments.get(timelineItemId, attachmentId).execute();
+		HttpResponse resp =
+				mirrorService.getRequestFactory()
+						.buildGetRequest(new GenericUrl(attachmentMetadata.getContentUrl())).execute();
+		return resp.getContent();
+	}
+
+	public static String getAttachmentContentType(Credential credential, String timelineItemId,
+	                                              String attachmentId) throws IOException {
+		Mirror.Timeline.Attachments attachments = getMirror(credential).timeline().attachments();
+		Attachment attachmentMetadata = attachments.get(timelineItemId, attachmentId).execute();
+		return attachmentMetadata.getContentType();
+	}
 }
