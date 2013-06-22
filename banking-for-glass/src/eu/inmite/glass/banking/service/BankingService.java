@@ -1,9 +1,10 @@
-package eu.inmite.glass.banking.model;
+package eu.inmite.glass.banking.service;
 
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.services.mirror.model.TimelineItem;
 import com.google.glassware.AuthUtil;
 import com.google.glassware.MirrorClient;
+import eu.inmite.glass.banking.model.AccountInfo;
 
 import java.io.IOException;
 import java.math.BigDecimal;
