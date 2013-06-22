@@ -55,6 +55,7 @@ public class FioRESTClient {
 			
 			AccountResponse responseObject = new ObjectMapper().readValue(response.getContent(), AccountResponse.class);
 			AccountInformationVO returnObject = new AccountInformationVO();
+			
 			// Fill balance info from Statement
 			AccountBalanceVO accountBalance = returnObject.getAccountBalance();
 			accountBalance.setAccountNumber(responseObject.getAccountStatement().getInfo().getAccountId());
