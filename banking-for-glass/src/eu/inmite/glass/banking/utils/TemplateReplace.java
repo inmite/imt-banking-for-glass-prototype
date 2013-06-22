@@ -17,19 +17,28 @@ public class TemplateReplace {
 	}
 	
 	public static String getHTMLTemplateText(String resource) throws Exception {
-		URL website = Object.class.getResource("/eu/inmite/glass/banking/resources/" + resource + ".html");
-        URLConnection connection = website.openConnection();
-        BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-
-        StringBuilder response = new StringBuilder();
-        String inputLine;
-
-        while ((inputLine = in.readLine()) != null) 
-            response.append(inputLine);
-
-        in.close();
-
-        return response.toString();
+		if (resource.equals("balance")) {
+			return "<article>" +
+					"<div style=\"padding: 25px 40px 23px 30px; background-color: #333; text-align: right; border: 1px solid #555; color: #2A94FE\">" +
+					"<p style=\"float: right; width: 480px;\">${BANK_ACCOUNT}</p>" +
+					"<div style=\"clear: both; height: 0;\"></div>" +
+					"</div>" +
+					"<div style=\"padding: 60px 40px 60px 20px; text-align: right; font-size: 88px\">${BALANCE} ${CURRENCY}</div>" +
+					"</article>";
+		} else {
+			return "<article>" +
+					"<div style=\"float: left; height: 360px; width: 22px; background-color: ${COLOR};\"></div>" +
+					"<section>" +
+					"<div class=\"text-x-large\" style=\"\">" +
+					"<p style=\"color: ${COLOR}\">${AMOUNT}<sub>${CURRENCY}</sub></p>" +
+					"<p style=\"font-size: 48px\">${MESSAGE}</p>" +
+					"</div>" +
+					"</section>" +
+					"<footer>" +
+					"<div>${DATE}</div>" +
+					"</footer>" +
+					"</article>";
+		}
     }
 	
 }
