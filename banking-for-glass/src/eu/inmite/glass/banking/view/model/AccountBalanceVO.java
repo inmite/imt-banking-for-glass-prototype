@@ -48,5 +48,15 @@ public class AccountBalanceVO {
 			return this.accountNumber + "/" + this.bankCode;
 		}
 	}
-	
+
+	@Override
+	public String toString() {
+		return "AccountBalanceVO{" +
+				"accountPrefix='" + accountPrefix + '\'' +
+				", accountNumber='" + accountNumber + '\'' +
+				", bankCode='" + bankCode + '\'' +
+				", amount=" + amount +
+				", currencyCode='" + currencyCode + '\'' +
+				"} " + super.toString();
+	}
 }

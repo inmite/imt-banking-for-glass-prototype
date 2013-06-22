@@ -4,7 +4,7 @@ import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.services.mirror.model.TimelineItem;
 import com.google.glassware.AuthUtil;
 import com.google.glassware.MirrorClient;
-import eu.inmite.glass.banking.model.AccountInfo;
+import eu.inmite.glass.banking.view.model.AccountBalanceVO;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -31,7 +31,13 @@ public class BankingService {
 
 	public void pushAccountForUser(String userId) throws IOException {
 		// mock object
-		final AccountInfo info = new AccountInfo("19", "123", "0100", new BigDecimal(10000));
+		final AccountBalanceVO info = new AccountBalanceVO();
+		info.setAccountNumber("123");
+		info.setAccountPrefix("19");
+		info.setBankCode("0100");
+		info.setAmount(new BigDecimal(10000));
+		info.setCurrencyCode("CZK");
+
 		final Credential credential = AuthUtil.newAuthorizationCodeFlow().loadCredential(userId);
 
 		final TimelineItem item = new TimelineItem();
