@@ -62,24 +62,6 @@ public class FioRESTClient {
 			
 			// Fill transactions from Statement
 			List<TransactionInfoVO> transactions = returnObject.getTransactions();
-			
-			for (Transaction transactionDO : responseObject.getAccountStatement().getTransactionList().getTransaction()) {
-				TransactionInfoVO transactionVO = new TransactionInfoVO();
-				transactionVO.setAmount(transactionDO.getColumn1().getValue());
-				transactionVO.setCurrencyCode(transactionDO.getColumn14().getValue());
-				if (transactionDO.getColumn7() != null) {
-					transactionVO.setMessage(transactionDO.getColumn7().getValue());
-				} else if (transactionDO.getColumn8() != null){
-					transactionVO.setMessage(transactionDO.getColumn8().getValue());
-				} else {
-					transactionVO.setMessage("ID: " + transactionDO.getColumn8().getValue());
-				}
-				if (transactionDO.getColumn0() != null) {
-					transactionVO.setDate(transactionDO.getColumn0().getValue());
-				}
-				transactions.add(transactionVO);
-			}
-			
 			return returnObject;
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block

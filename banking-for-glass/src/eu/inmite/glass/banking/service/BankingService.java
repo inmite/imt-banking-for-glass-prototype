@@ -49,9 +49,9 @@ public class BankingService {
 		final Credential credential = AuthUtil.newAuthorizationCodeFlow().loadCredential(userId);
 
 		final String html = TemplateReplace.templateReplace(TEMPLATE_BALANCE, ImmutableMap.<String, String>of(
-				"${BANK_ACCOUNT}", balance.getFullBankAccountNumber(),
-				"${BALANCE}", String.valueOf(balance.getAmount()),
-				"${CURRENCY}", balance.getCurrencyCode()
+				"BANK_ACCOUNT", balance.getFullBankAccountNumber(),
+				"BALANCE", String.valueOf(balance.getAmount()),
+				"CURRENCY", balance.getCurrencyCode()
 		));
 		final TimelineItem item = new TimelineItem();
 		item.setHtml(html);

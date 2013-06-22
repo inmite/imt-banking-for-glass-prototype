@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="edab0a1e-f1ac-4a9f-b84c-675641d7c432" name="Default" comment="html">
+    <list default="true" id="edab0a1e-f1ac-4a9f-b84c-675641d7c432" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/eu/inmite/glass/banking/service/BankingService.java" afterPath="$PROJECT_DIR$/src/eu/inmite/glass/banking/service/BankingService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/eu/inmite/glass/banking/rest/FioRESTClient.java" afterPath="$PROJECT_DIR$/src/eu/inmite/glass/banking/rest/FioRESTClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/eu/inmite/glass/banking/utils/TemplateReplace.java" afterPath="$PROJECT_DIR$/src/eu/inmite/glass/banking/utils/TemplateReplace.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="glass-java-starter-project.iws" />
@@ -17,7 +16,7 @@
     <file path="/AccountStatement.java" changelist="edab0a1e-f1ac-4a9f-b84c-675641d7c432" time="1371911338363" ignored="false" />
     <file path="/AccountInfo.java" changelist="edab0a1e-f1ac-4a9f-b84c-675641d7c432" time="1371916953309" ignored="false" />
     <file path="/Transaction.java" changelist="edab0a1e-f1ac-4a9f-b84c-675641d7c432" time="1371917867243" ignored="false" />
-    <file path="/Dummy.txt" changelist="edab0a1e-f1ac-4a9f-b84c-675641d7c432" time="1371927415806" ignored="false" />
+    <file path="/Dummy.txt" changelist="edab0a1e-f1ac-4a9f-b84c-675641d7c432" time="1371927418919" ignored="false" />
     <file path="/NewUserBootstrapper.java" changelist="edab0a1e-f1ac-4a9f-b84c-675641d7c432" time="1371923898466" ignored="false" />
     <file path="/queue.xml" changelist="edab0a1e-f1ac-4a9f-b84c-675641d7c432" time="1371920759526" ignored="false" />
     <file path="/web.xml" changelist="edab0a1e-f1ac-4a9f-b84c-675641d7c432" time="1371921003692" ignored="false" />
@@ -100,39 +99,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="NewUserBootstrapper.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="NewUserBootstrapper.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/google/glassware/NewUserBootstrapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="68" column="15" selection-start="2829" selection-end="2829" vertical-scroll-proportion="0.0">
+            <state line="69" column="27" selection-start="2913" selection-end="2913" vertical-scroll-proportion="0.70884144">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BankingService.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/eu/inmite/glass/banking/service/BankingService.java">
+      <file leaf-file-name="AuthUtil.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/google/glassware/AuthUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="0" selection-start="1851" selection-end="1851" vertical-scroll-proportion="0.3951613">
-              <folding>
-                <element signature="e#2030#2046#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FioRESTClientTestServlet.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/eu/inmite/glass/banking/servlet/FioRESTClientTestServlet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="138" selection-start="612" selection-end="676" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FioRESTClient.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/eu/inmite/glass/banking/rest/FioRESTClient.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="0" selection-start="879" selection-end="879" vertical-scroll-proportion="0.0">
+            <state line="42" column="0" selection-start="1593" selection-end="1593" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -150,7 +129,7 @@
       <file leaf-file-name="RefreshAccountsServlet.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/eu/inmite/glass/banking/servlet/RefreshAccountsServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="41" selection-start="1108" selection-end="1108" vertical-scroll-proportion="0.0">
+            <state line="26" column="41" selection-start="922" selection-end="922" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -193,9 +172,9 @@
         <option value="$PROJECT_DIR$/src/eu/inmite/glass/banking/model/BankingService.java" />
         <option value="$PROJECT_DIR$/src/eu/inmite/glass/banking/servlet/RefreshAccountsServlet.java" />
         <option value="$PROJECT_DIR$/src/eu/inmite/glass/banking/view/model/AccountBalanceVO.java" />
-        <option value="$PROJECT_DIR$/src/eu/inmite/glass/banking/rest/FioRESTClient.java" />
         <option value="$PROJECT_DIR$/src/eu/inmite/glass/banking/servlet/FioRESTClientTestServlet.java" />
         <option value="$PROJECT_DIR$/src/eu/inmite/glass/banking/utils/TemplateReplace.java" />
+        <option value="$PROJECT_DIR$/src/eu/inmite/glass/banking/rest/FioRESTClient.java" />
         <option value="$PROJECT_DIR$/src/eu/inmite/glass/banking/service/BankingService.java" />
       </list>
     </option>
@@ -213,7 +192,7 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="52" />
+    <option name="x" value="51" />
     <option name="y" value="22" />
     <option name="width" value="1228" />
     <option name="height" value="778" />
@@ -400,6 +379,20 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="starter-project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="banking-for-glass" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="rest" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
@@ -420,20 +413,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="starter-project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="banking-for-glass" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -755,7 +734,11 @@
       <created>1371925296560</created>
       <updated>1371925296560</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="html">
+      <created>1371927423190</created>
+      <updated>1371927423190</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -779,7 +762,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="52" y="22" width="1228" height="778" extended-state="0" />
+    <frame x="51" y="22" width="1228" height="778" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -799,7 +782,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30759802" sideWeight="0.2182681" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298484" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2571912" sideWeight="0.5482456" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2571912" sideWeight="0.6988304" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3011696" sideWeight="0.8710191" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.249694" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -855,7 +838,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="logging" />
+    <option name="LAST_COMMIT_MESSAGE" value="html" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -873,6 +856,7 @@
     <MESSAGE value="transaction" />
     <MESSAGE value="no XmlGregorianCalendar" />
     <MESSAGE value="logging" />
+    <MESSAGE value="html" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -898,13 +882,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/google/glassware/NewUserBootstrapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="15" selection-start="2829" selection-end="2829" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/queue.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="30" selection-start="296" selection-end="296" vertical-scroll-proportion="0.34369886">
@@ -928,7 +905,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/eu/inmite/glass/banking/servlet/RefreshAccountsServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="41" selection-start="1108" selection-end="1108" vertical-scroll-proportion="0.0">
+        <state line="26" column="41" selection-start="922" selection-end="922" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -954,37 +931,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/eu/inmite/glass/banking/rest/FioRESTClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="0" selection-start="879" selection-end="879" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/eu/inmite/glass/banking/servlet/FioRESTClientTestServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="138" selection-start="612" selection-end="676" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/eu/inmite/glass/banking/model/fio/AccountStatement.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="316" column="0" selection-start="19246" selection-end="19246" vertical-scroll-proportion="0.7109005">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/google/glassware/AuthUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="99" column="0" selection-start="3692" selection-end="3692" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/eu/inmite/glass/banking/utils/TemplateReplace.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="30" selection-start="213" selection-end="213" vertical-scroll-proportion="0.16587678">
           <folding />
         </state>
       </provider>
@@ -996,12 +945,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/eu/inmite/glass/banking/utils/TemplateReplace.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="25" selection-start="117" selection-end="117" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/eu/inmite/glass/banking/rest/FioRESTClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="20" selection-start="1740" selection-end="1740" vertical-scroll-proportion="0.4048387">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/eu/inmite/glass/banking/service/BankingService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="0" selection-start="1851" selection-end="1851" vertical-scroll-proportion="0.3951613">
+        <state line="48" column="39" selection-start="1885" selection-end="1885" vertical-scroll-proportion="0.5403226">
           <folding>
             <element signature="e#2030#2046#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/eu/inmite/glass/banking/servlet/FioRESTClientTestServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="0" selection-start="433" selection-end="433" vertical-scroll-proportion="0.24193548">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/google/glassware/AuthUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="0" selection-start="1593" selection-end="1593" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/google/glassware/NewUserBootstrapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="69" column="27" selection-start="2913" selection-end="2913" vertical-scroll-proportion="0.70884144">
+          <folding />
         </state>
       </provider>
     </entry>
