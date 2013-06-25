@@ -7,4 +7,4 @@ A prototype of a banking application for Google Glass. Uses open REST API by Fio
 
 Currently application can show you current account balance and transactions for last month.
 
-See http://www.inmite.eu/en/blog/20130624-banking-for-google-glass for more detai
+See http://www.inmite.eu/en/blog/20130624-banking-for-google-glass for more details.
