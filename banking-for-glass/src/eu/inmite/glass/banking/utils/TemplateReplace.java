@@ -31,7 +31,7 @@ public class TemplateReplace {
 					"<section>" +
 					"<div class=\"text-x-large\" style=\"\">" +
 					"<p style=\"color: ${COLOR}\">${AMOUNT}<sub>${CURRENCY}</sub></p>" +
-					"<p style=\"font-size: 48px\">${MESSAGE}</p>" +
+					"<p style=\"font-size: 36px\">${MESSAGE}</p>" +
 					"</div>" +
 					"</section>" +
 					"<footer>" +
